@@ -12,6 +12,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void createUsersTable() {
         String createTable = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT,lastname TEXT, age INTEGER)";
         try (Connection connection = Util.getConnection();
@@ -22,7 +23,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
     }
-
+    @Override
     public void dropUsersTable() {
         String dropTable = "DROP TABLE IF EXISTS users";
         try (Connection connection = Util.getConnection();
@@ -33,7 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
     }
-
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String sql = "INSERT INTO users(name,lastname,age) values(?, ?, ?)";
         Connection con = Util.getConnection();
@@ -49,7 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
     }
-
+    @Override
     public void removeUserById(long id) {
         String sql = "DELETE FROM users WHERE id = " + id;
         Connection conn = Util.getConnection();
@@ -59,7 +60,7 @@ public class UserDaoJDBCImpl implements UserDao {
             System.out.println("Не получиось удалить пользователя");
         }
     }
-
+    @Override
     public List<User> getAllUsers() {
         String sql = "SELECT * FROM users";
         List<User> users = new ArrayList<>();
@@ -79,7 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
         return users;
     }
-
+    @Override
     public void cleanUsersTable() {
         String sql = "DELETE FROM users";
         Connection conn = Util.getConnection();
